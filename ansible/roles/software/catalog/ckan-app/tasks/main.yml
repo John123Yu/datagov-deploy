@@ -33,6 +33,12 @@
   with_items:
     - etc/ckan/production.ini
 
+# Add token.dat file
+- name: Add token.dat file
+  template: src=templates/{{item}}.j2 dest=/{{item}}
+  with_items:
+    - etc/pyenv/token.dat
+
 - name: Configure who.ini
   shell: cp -r {{ app_source_path }}/config/environments/{{ env }}/saml2/who.ini /etc/ckan
 
