@@ -35,7 +35,7 @@
 
 # Add token.dat file
 - name: Add token.dat file
-  template: src=templates/pyenv/token.dat.j2 dest=/{{item}}
+  template: src=templates/pyenv/token.dat.j2 dest={{item}}
   with_items:
     - ~/pyenv/token.dat
 
