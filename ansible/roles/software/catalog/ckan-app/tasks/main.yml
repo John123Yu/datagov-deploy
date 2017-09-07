@@ -33,11 +33,20 @@
   with_items:
     - etc/ckan/production.ini
 
+- name: Creates etc/pyenv directory
+  file: path=/etc/pyenv state=directory
+
+# Add token.date file
+- name: Add token.date file
+  copy:
+    content="{{token_dat}}"
+    dest=/etc/pyenv/token.dat
+
 # Add token.dat file
-- name: Add token.dat file
-  template: src=templates/pyenv/token.dat.j2 dest={{item}}
-  with_items:
-    - ~/pyenv/token.dat
+#- name: Add token.dat file
+#  template: src=templates/pyenv/token.dat.j2 dest={{item}}
+#  with_items:
+#    - /etc/pyenv/token.dat
 
 - name: Configure who.ini
   shell: cp -r {{ app_source_path }}/config/environments/{{ env }}/saml2/who.ini /etc/ckan
